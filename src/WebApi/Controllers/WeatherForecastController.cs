@@ -1,4 +1,6 @@
 ﻿using System.Net.Mime;
+using ApplicationCore.Dto;
+using ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
@@ -10,19 +12,20 @@ namespace WebApi.Controllers;
 [Produces(MediaTypeNames.Application.Json)]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
+    private readonly IWeatherForecastService _service;
     private readonly ILogger<WeatherForecastController> _logger;
 
     /// <summary>
     /// Initializes a new instance of WeatherForecastController class.
     /// </summary>
+    /// <param name="service">Use case layer object</param>
     /// <param name="logger">Logging object</param>
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(
+        IWeatherForecastService service,
+        ILogger<WeatherForecastController> logger
+    )
     {
+        _service = service;
         _logger = logger;
     }
 
@@ -33,7 +36,7 @@ public class WeatherForecastController : ControllerBase
     /// <response code="200">Success</response>
     /// <response code="500">Internal server error</response>
     [HttpGet(Name = "GetWeatherForecast")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WeatherForecast[]))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WeatherForecastDto[]))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     public IActionResult GetWeatherForecasts()
     {
@@ -42,13 +45,7 @@ public class WeatherForecastController : ControllerBase
 
         try
         {
-            var weatherForecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var weatherForecasts = _service.GetWeatherForecasts();
             return Ok(weatherForecasts);
         }
         catch (Exception ex)
@@ -64,6 +61,5 @@ public class WeatherForecastController : ControllerBase
             };
             return StatusCode(StatusCodes.Status500InternalServerError, response);
         }
-
     }
 }

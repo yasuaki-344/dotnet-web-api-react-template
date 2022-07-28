@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Text.Json.Serialization;
 
-namespace WebApi;
+namespace ApplicationCore.Dto;
 
 [DisplayName("WeatherForecast")]
-public class WeatherForecast
+public class WeatherForecastDto
 {
     [JsonPropertyName("date")]
     public DateTime Date { get; set; }

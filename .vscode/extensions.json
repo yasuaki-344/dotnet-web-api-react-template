@@ -1,5 +1,8 @@
 {
     "recommendations": [
-        "EditorConfig.EditorConfig"
+        "editorconfig.editorconfig",
+        "k--kato.docomment",
+        "ms-dotnettools.csharp",
+        "streetsidesoftware.code-spell-checker"
     ]
 }

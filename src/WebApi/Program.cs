@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
+using ApplicationCore.Interfaces;
+using ApplicationCore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using WebApi.Converters;
@@ -14,6 +16,10 @@ builder.Services
     {
         options.JsonSerializerOptions.Converters.Add(new DateTimeISO8601Converter());
     });
+
+// Dependency injection setting
+builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApiVersioning(setup =>
