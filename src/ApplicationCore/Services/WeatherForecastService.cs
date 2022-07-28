@@ -1,5 +1,5 @@
-﻿using ApplicationCore.Interfaces;
-using ApplicationCore.Dto;
+﻿using ApplicationCore.Dto;
+using ApplicationCore.Interfaces;
 
 namespace ApplicationCore.Services;
 
