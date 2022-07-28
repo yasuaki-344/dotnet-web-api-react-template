@@ -2,6 +2,7 @@
 using System.Reflection;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Services;
+using ApplicationCore.Mapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using WebApi.Converters;
@@ -16,6 +17,9 @@ builder.Services
     {
         options.JsonSerializerOptions.Converters.Add(new DateTimeISO8601Converter());
     });
+
+// Auto mapping setting
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapping>());
 
 // Dependency injection setting
 builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
