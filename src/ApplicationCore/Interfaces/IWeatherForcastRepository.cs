@@ -1,12 +1,12 @@
-﻿using ApplicationCore.Dto;
+﻿using ApplicationCore.Entities;
 
 namespace ApplicationCore.Interfaces;
 
-public interface IWeatherForecastService
+public interface IWeatherForecastRepository
 {
     /// <summary>
     /// Returns weather forecast lists.
     /// </summary>
     /// <returns>Weather forecast lists</returns>
-    WeatherForecastDto[] GetWeatherForecasts();
+    IEnumerable<WeatherForecast> GetWeatherForecasts();
 }

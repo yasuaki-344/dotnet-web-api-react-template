@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 using ApplicationCore.Interfaces;
-using ApplicationCore.Services;
 using ApplicationCore.Mapper;
+using ApplicationCore.Services;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using WebApi.Converters;
@@ -22,6 +23,7 @@ builder.Services
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapping>());
 
 // Dependency injection setting
+builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
 builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

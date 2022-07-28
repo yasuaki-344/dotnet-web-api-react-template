@@ -1,6 +1,6 @@
-using AutoMapper;
-using ApplicationCore.Dto;
+﻿using ApplicationCore.Dto;
 using ApplicationCore.Entities;
+using AutoMapper;
 
 namespace ApplicationCore.Mapper;
 
