@@ -58,4 +58,4 @@ jobs:
 
       - name: Build Client Docker image
         run: |
-          docker build -t $react-client:${{ github.sha }} -f docker/client-app/Dockerfile ./
+          docker build -t $IMAGE:${{ github.sha }} -f docker/client-app/Dockerfile ./
