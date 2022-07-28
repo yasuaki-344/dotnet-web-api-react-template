@@ -48,7 +48,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
   build-container:
-    runs-on: ubuntu-ubuntu-latest
+    runs-on: ubuntu-latest
     name: Build docker image
     needs: [build]
     env:
