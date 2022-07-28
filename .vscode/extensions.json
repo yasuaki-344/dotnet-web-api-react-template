@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig",
+        "k--kato.docomment",
+        "ms-dotnettools.csharp",
+        "streetsidesoftware.code-spell-checker",
+        "ms-azuretools.vscode-docker"
+    ]
+}
