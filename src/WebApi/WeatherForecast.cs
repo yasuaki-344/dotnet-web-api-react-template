@@ -1,16 +1,20 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace WebApi;
 
+[DisplayName("WeatherForecast")]
 public class WeatherForecast
 {
+    [JsonPropertyName("date")]
     public DateTime Date { get; set; }
 
+    [JsonPropertyName("temperature_c")]
     public int TemperatureC { get; set; }
 
+    [JsonPropertyName("temperature_f")]
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
-    public string? Summary { get; set; }
+    [JsonPropertyName("summary")]
+    public string Summary { get; set; } = string.Empty;
 }
