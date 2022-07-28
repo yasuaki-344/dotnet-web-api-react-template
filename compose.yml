@@ -1,0 +1,42 @@
+services:
+  react:
+    build:
+      context: .
+      dockerfile: ./docker/client-app/Dockerfile
+    depends_on:
+      - webapi
+    volumes:
+      - ./docker/client-app/ngin/:/etc/nginx:ro
+    ports:
+      - 8080:80
+    networks:
+      - frontend
+    restart: always
+  webapi:
+    build:
+      context: .
+      dockerfile: ./docker/web-api/Dockerfile
+    depends_on:
+      - database
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+    networks:
+      - frontend
+      - backend
+    restart: always
+    secrets:
+      - appsettings
+  database:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    networks:
+      - backend
+    restart: always
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
