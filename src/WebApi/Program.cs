@@ -5,6 +5,7 @@ using ApplicationCore.Mapper;
 using ApplicationCore.Services;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebApi.Converters;
 
@@ -18,6 +19,11 @@ builder.Services
     {
         options.JsonSerializerOptions.Converters.Add(new DateTimeISO8601Converter());
     });
+
+// Database setting
+var configuration = builder.Configuration;
+var connectionString = configuration.GetConnectionString("Postgres");
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(connectionString));
 
 // Auto mapping setting
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapping>());
