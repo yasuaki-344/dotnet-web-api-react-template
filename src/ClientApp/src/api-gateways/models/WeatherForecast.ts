@@ -45,15 +45,6 @@ export interface WeatherForecast {
     summary?: string | null;
 }
 
-/**
- * Check if a given object implements the WeatherForecast interface.
- */
-export function instanceOfWeatherForecast(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
-}
-
 export function WeatherForecastFromJSON(json: any): WeatherForecast {
     return WeatherForecastFromJSONTyped(json, false);
 }
