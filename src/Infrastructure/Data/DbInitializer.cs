@@ -17,14 +17,17 @@ public static class DbInitializer
         {
             context.Database.EnsureCreated();
 
-            var entities = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            if (!context.WeatherForecasts.Any())
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            });
-            await context.WeatherForecasts.AddRangeAsync(entities);
-            await context.SaveChangesAsync();
+                var entities = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                {
+                    Date = DateTime.Now.AddDays(index),
+                    TemperatureC = Random.Shared.Next(-20, 55),
+                    Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                });
+                await context.WeatherForecasts.AddRangeAsync(entities);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

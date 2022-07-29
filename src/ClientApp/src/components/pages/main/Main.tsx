@@ -1,10 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { WeatherForecast } from "../../../api-gateways";
 import reactLogo from "../../../assets/react.svg";
+import { useInjection } from "../../../container";
+import { WeatherForecastInteractorInterface } from "../../../interfaces";
 import { ImageLink } from "../../ui-parts";
 import "./App.css";
 
-export const App = () => {
+export const Main = () => {
+  const inject = useInjection();
+  const useCase = inject<WeatherForecastInteractorInterface>(
+    "WeatherForecastInteractor"
+  );
+
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    useCase
+      .getWeatherForecast()
+      .then((response: WeatherForecast[]) => {
+        console.log(response);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="App">
