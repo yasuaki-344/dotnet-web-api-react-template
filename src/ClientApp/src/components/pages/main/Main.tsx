@@ -3,7 +3,7 @@ import reactLogo from "../../../assets/react.svg";
 import { ImageLink } from "../../ui-parts";
 import "./App.css";
 
-export const App = () => {
+export const Main = () => {
   const [count, setCount] = useState(0);
 
   return (
