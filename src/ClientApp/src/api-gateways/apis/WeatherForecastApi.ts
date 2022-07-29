@@ -24,9 +24,32 @@ import {
 } from '../models';
 
 /**
+ * WeatherForecastApi - interface
+ * 
+ * @export
+ * @interface WeatherForecastApiInterface
+ */
+export interface WeatherForecastApiInterface {
+    /**
+     * 
+     * @summary Gets whether forecast list.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WeatherForecastApiInterface
+     */
+    getWeatherForecastRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<WeatherForecast>>>;
+
+    /**
+     * Gets whether forecast list.
+     */
+    getWeatherForecast(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<WeatherForecast>>;
+
+}
+
+/**
  * 
  */
-export class WeatherForecastApi extends runtime.BaseAPI {
+export class WeatherForecastApi extends runtime.BaseAPI implements WeatherForecastApiInterface {
 
     /**
      * Gets whether forecast list.
