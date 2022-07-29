@@ -19,6 +19,7 @@ rules:
     - "error"
     - devDependencies:
         - "**/*.stories.tsx"
+        - "**/*.test.ts"
       optionalDependencies: false
   import/prefer-default-export: off
   react/function-component-definition: off
