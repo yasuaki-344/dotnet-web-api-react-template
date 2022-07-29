@@ -15,6 +15,11 @@ parserOptions:
 plugins:
   - react
 rules:
+  import/no-extraneous-dependencies:
+    - "error"
+    - devDependencies:
+        - "**/*.stories.tsx"
+      optionalDependencies: false
   import/prefer-default-export: off
   react/function-component-definition: off
   react/react-in-jsx-scope: off
