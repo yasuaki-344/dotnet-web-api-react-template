@@ -35,7 +35,10 @@ export const constructContainer = () => {
   };
 
   // Register objects to DI container.
+  // Register infrastructure
   register("WeatherForecastApi", new WeatherForecastApi());
+
+  // Register use-case interactor
   register(
     "WeatherForecastInteractor",
     new WeatherForecastInteractor(
