@@ -52,6 +52,15 @@ export interface ProblemDetails {
     instance?: string | null;
 }
 
+/**
+ * Check if a given object implements the ProblemDetails interface.
+ */
+export function instanceOfProblemDetails(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ProblemDetailsFromJSON(json: any): ProblemDetails {
     return ProblemDetailsFromJSONTyped(json, false);
 }

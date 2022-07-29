@@ -14,11 +14,13 @@
 
 
 import * as runtime from '../runtime';
+import type {
+  ProblemDetails,
+  WeatherForecast,
+} from '../models';
 import {
-    ProblemDetails,
     ProblemDetailsFromJSON,
     ProblemDetailsToJSON,
-    WeatherForecast,
     WeatherForecastFromJSON,
     WeatherForecastToJSON,
 } from '../models';
@@ -37,12 +39,12 @@ export interface WeatherForecastApiInterface {
      * @throws {RequiredError}
      * @memberof WeatherForecastApiInterface
      */
-    getWeatherForecastRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<WeatherForecast>>>;
+    getWeatherForecastRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WeatherForecast>>>;
 
     /**
      * Gets whether forecast list.
      */
-    getWeatherForecast(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<WeatherForecast>>;
+    getWeatherForecast(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WeatherForecast>>;
 
 }
 
@@ -54,7 +56,7 @@ export class WeatherForecastApi extends runtime.BaseAPI implements WeatherForeca
     /**
      * Gets whether forecast list.
      */
-    async getWeatherForecastRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<WeatherForecast>>> {
+    async getWeatherForecastRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WeatherForecast>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -72,7 +74,7 @@ export class WeatherForecastApi extends runtime.BaseAPI implements WeatherForeca
     /**
      * Gets whether forecast list.
      */
-    async getWeatherForecast(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<WeatherForecast>> {
+    async getWeatherForecast(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WeatherForecast>> {
         const response = await this.getWeatherForecastRaw(initOverrides);
         return await response.value();
     }
