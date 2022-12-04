@@ -4,7 +4,7 @@ import reactLogo from "../../../assets/react.svg";
 import {
   useCounter,
   useCountStorage,
-  userWeatherForecast,
+  useWeatherForecast,
 } from "../../../services";
 import { ImageLink } from "../../ui-parts";
 import "./App.css";
@@ -12,7 +12,7 @@ import "./App.css";
 export const Main = () => {
   const { count } = useCountStorage();
   const { increaseCount } = useCounter();
-  const { getWeatherForecast } = userWeatherForecast();
+  const { getWeatherForecast } = useWeatherForecast();
 
   useEffect(() => {
     getWeatherForecast()

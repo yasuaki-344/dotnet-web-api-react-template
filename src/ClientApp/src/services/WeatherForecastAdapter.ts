@@ -1,7 +1,7 @@
 import { WeatherForecast, WeatherForecastApi } from "../api-gateways";
 import { WeatherForecastService } from "../application";
 
-export const userWeatherForecast = (): WeatherForecastService => {
+export const useWeatherForecast = (): WeatherForecastService => {
   const api = new WeatherForecastApi();
 
   const getWeatherForecast = async (): Promise<WeatherForecast[]> => {
@@ -9,7 +9,5 @@ export const userWeatherForecast = (): WeatherForecastService => {
     return res;
   };
 
-  return {
-    getWeatherForecast,
-  };
+  return { getWeatherForecast };
 };
