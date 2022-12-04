@@ -10,7 +10,7 @@ const StorageContext = createContext<any>({});
 export const useStorage = () => useContext(StorageContext);
 
 export const Provider = ({ children }: { children: ReactNode }) => {
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(0);
 
   const value = useMemo(() => ({ count, updateCount: setCount }), [count]);
 

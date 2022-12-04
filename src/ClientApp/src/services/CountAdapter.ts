@@ -1,9 +1,9 @@
-import { CountService, useIncrementCount } from "../application";
+import { CountService, CountUseCase } from "../application";
 import { useCountStorage } from "./StorageAdapter";
 
 export const useCounter = (): CountService => {
   const { count, updateCount } = useCountStorage();
-  const { increaseCount } = useIncrementCount(count, updateCount);
+  const { increaseCount } = CountUseCase(count, updateCount);
 
   return {
     increaseCount,

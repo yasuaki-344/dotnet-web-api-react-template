@@ -1,4 +1,4 @@
-export const useIncrementCount = (
+export const CountUseCase = (
   count: number,
   updateCount: (count: number) => void
 ) => {
