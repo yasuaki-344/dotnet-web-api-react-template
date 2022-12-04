@@ -1,23 +1,21 @@
 import { useEffect } from "react";
 import { WeatherForecast } from "../../../api-gateways";
 import reactLogo from "../../../assets/react.svg";
-import { useInjection } from "../../../container";
-import { WeatherForecastInteractorInterface } from "../../../interfaces";
-import { useCounter, useCountStorage } from "../../../services";
+import {
+  useCounter,
+  useCountStorage,
+  userWeatherForecast,
+} from "../../../services";
 import { ImageLink } from "../../ui-parts";
 import "./App.css";
 
 export const Main = () => {
   const { count } = useCountStorage();
   const { increaseCount } = useCounter();
-  const inject = useInjection();
-  const useCase = inject<WeatherForecastInteractorInterface>(
-    "WeatherForecastInteractor"
-  );
+  const { getWeatherForecast } = userWeatherForecast();
 
   useEffect(() => {
-    useCase
-      .getWeatherForecast()
+    getWeatherForecast()
       .then((response: WeatherForecast[]) => {
         console.log(response);
       })
