@@ -1,11 +1,7 @@
-type Dependency = {
-  count: number;
-  updateCount: (count: number) => void;
-};
-
-export const useIncrementCount = (dependency: Dependency) => {
-  const { count, updateCount } = dependency;
-
+export const useIncrementCount = (
+  count: number,
+  updateCount: (count: number) => void
+) => {
   const increaseCount = () => updateCount(count + 1);
 
   return {
