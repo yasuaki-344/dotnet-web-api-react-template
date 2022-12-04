@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { WeatherForecast } from "../../../api-gateways";
 import reactLogo from "../../../assets/react.svg";
-import { useInjection } from "../../../container";
-import { WeatherForecastInteractorInterface } from "../../../interfaces";
+import {
+  useCounter,
+  useCountStorage,
+  useWeatherForecast,
+} from "../../../services";
 import { ImageLink } from "../../ui-parts";
 import "./App.css";
 
 export const Main = () => {
-  const inject = useInjection();
-  const useCase = inject<WeatherForecastInteractorInterface>(
-    "WeatherForecastInteractor"
-  );
-
-  const [count, setCount] = useState(0);
+  const { count } = useCountStorage();
+  const { increaseCount } = useCounter();
+  const { getWeatherForecast } = useWeatherForecast();
 
   useEffect(() => {
-    useCase
-      .getWeatherForecast()
+    getWeatherForecast()
       .then((response: WeatherForecast[]) => {
         console.log(response);
       })
@@ -41,7 +40,7 @@ export const Main = () => {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((o) => o + 1)} type="button">
+        <button onClick={() => increaseCount()} type="button">
           count is {count}
         </button>
         <p>
