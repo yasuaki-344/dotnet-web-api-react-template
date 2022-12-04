@@ -1,13 +1,13 @@
-import { WeatherForecast, WeatherForecastApi } from "../api-gateways";
-import { WeatherForecastService } from "../application";
+import { WeatherForecastApi } from "../api-gateways";
+import { WeatherForecastService, WeatherForecastUseCase } from "../application";
 
 export const useWeatherForecast = (): WeatherForecastService => {
   const api = new WeatherForecastApi();
+  api.getWeatherForecast();
 
-  const getWeatherForecast = async (): Promise<WeatherForecast[]> => {
-    const res = await api.getWeatherForecast();
-    return res;
-  };
+  const { getWeatherForecast } = WeatherForecastUseCase(() =>
+    api.getWeatherForecast()
+  );
 
   return { getWeatherForecast };
 };
