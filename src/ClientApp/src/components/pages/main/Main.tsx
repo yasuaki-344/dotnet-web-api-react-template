@@ -3,12 +3,13 @@ import { WeatherForecast } from "../../../api-gateways";
 import reactLogo from "../../../assets/react.svg";
 import { useInjection } from "../../../container";
 import { WeatherForecastInteractorInterface } from "../../../interfaces";
-import { useCountStorage } from "../../../services/StorageAdapter";
+import { useCounter, useCountStorage } from "../../../services";
 import { ImageLink } from "../../ui-parts";
 import "./App.css";
 
 export const Main = () => {
-  const { count, updateCount } = useCountStorage();
+  const { count } = useCountStorage();
+  const { increaseCount } = useCounter();
   const inject = useInjection();
   const useCase = inject<WeatherForecastInteractorInterface>(
     "WeatherForecastInteractor"
@@ -41,7 +42,7 @@ export const Main = () => {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => updateCount(count + 1)} type="button">
+        <button onClick={() => increaseCount()} type="button">
           count is {count}
         </button>
         <p>
