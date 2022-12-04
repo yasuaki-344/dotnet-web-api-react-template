@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 const StorageContext = createContext<any>({});
-export const useStore = () => useContext(StorageContext);
+export const useStorage = () => useContext(StorageContext);
 
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [count, setCount] = useState(10);
